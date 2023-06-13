@@ -1,0 +1,16 @@
+- name: Install packages
+  ansible.builtin.apt:
+    pkg:
+    - python3
+    - nginx
+- name: Copy over files exploit.py
+  ansible.builtin.copy:
+    src: exploit.py
+    dest: /tmp/exploit.py
+- name: Copy over files consumer.py
+  ansible.builtin.copy:
+    src: consumer.py
+    dest: /tmp/consumer.py
+- name: Run files on a remote server with a Python interpreter, specifying corresponding
+    arguments
+  aansible.builtin.command: python3 /tmp/consumer.py -e 4815162342,3133780085
